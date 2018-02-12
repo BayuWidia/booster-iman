@@ -18,128 +18,101 @@
 @endsection
 
 @section('content')
-<script>
-  window.setTimeout(function() {
-    $(".alert-success").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove();
-    });
-  }, 2000);
+  <script>
+    window.setTimeout(function() {
+      $(".alert-success").fadeTo(500, 0).slideUp(500, function(){
+          $(this).remove();
+      });
+    }, 2000);
 
-  window.setTimeout(function() {
-    $(".alert-warning").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove();
-    });
-  }, 5000);
-</script>
-
-<div class="modal fade" id="modaledit" role="dialog">
-  <div class="modal-dialog">
-    <form class="form-horizontal" action="{{route('user.update')}}" method="post" enctype="multipart/form-data">
-      {{csrf_field()}}
+    window.setTimeout(function() {
+      $(".alert-warning").fadeTo(500, 0).slideUp(500, function(){
+          $(this).remove();
+      });
+    }, 5000);
+  </script>
+  <div class="modal fade" id="modaldelete" role="dialog">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Edit User</h4>
+          <h4 class="modal-title">Hapus User</h4>
         </div>
         <div class="modal-body">
-          <div class="col-md-14 {{ $errors->has('email') ? 'has-error' : '' }}">
-            <label class="control-label">Email</label>
-            <input type="hidden" name="id" id="id">
-            <input id="edit_email" type="email" name="email" class="form-control" placeholder="Email" readonly="true" 
-            @if($errors->has('email'))
-              value="{{ old('email') }}"
-            @endif
-            readonly>
-            @if($errors->has('email'))
-              <span class="help-block">
-                <i>* {{$errors->first('email')}}</i>
-              </span>
-            @endif
-          </div>
-          <div class="col-md-14 {{ $errors->has('nama') ? 'has-error' : '' }}">
-            <label class="control-label">Nama</label>
-            <input id="edit_nama" type="input" name="nama" class="form-control" placeholder="Name"
-            @if($errors->has('nama'))
-              value="{{ old('nama') }}"
-            @endif>
-            @if($errors->has('nama'))
-              <span class="help-block">
-                <i>* {{$errors->first('nama')}}</i>
-              </span>
-            @endif
-          </div>
-          <div class="col-md-14 {{ $errors->has('level') ? 'has-error' : '' }}">
-            <label class="control-label">Level</label>
-            <select class="form-control" name="level" id="level_user">
-              <option value="-- Pilih --">-- Pilih --</option>
-              <option value="1" {{ old('level')=="1" ? 'selected' : '' }} id="flag_super_admin">Superadmin</option>
-              <option value="2" {{ old('level')=="2" ? 'selected' : '' }} id="flag_admin">Admin</option>
-              <option value="3" {{ old('level')=="3" ? 'selected' : '' }} id="flag_user">User</option>
-            </select>
-            @if($errors->has('level'))
-              <span class="help-block">
-                <i>* {{$errors->first('level')}}</i>
-              </span>
-            @endif
-          </div>
-          <div class="col-md-14 {{ $errors->has('activated') ? 'has-error' : '' }}">
-            <label class="control-label">Status Aktif</label>
-            <select class="form-control" name="activated" id="activated_id">
-              <option value="-- Pilih --">-- Pilih --</option>
-              <option value="0" {{ old('activated')=="0" ? 'selected' : '' }} id="flag_tidak_aktif">Tidak Aktif</option>
-              <option value="1" {{ old('activated')=="1" ? 'selected' : '' }} id="flag_aktif">Aktif</option>
-            </select>
-            @if($errors->has('activated'))
-              <span class="help-block">
-                <i>* {{$errors->first('activated')}}</i>
-              </span>
-            @endif
-          </div>
+          <p>Apakah anda yakin untuk menghapus user ini?</p>
         </div>
         <div class="modal-footer">
-          <button type="reset" class="btn btn-danger pull-left btn-flat" data-dismiss="modal">Tidak</button>
-          <button type="submit" class="btn btn-primary btn-flat">Simpan Perubahan</a>
+          <button type="reset" class="btn btn-default pull-left btn-flat" data-dismiss="modal">Tidak</button>
+          <a class="btn btn-danger btn-flat" id="sethapus">Ya, saya yakin</a>
         </div>
-      </div>
-  </form>
-  </div>
-</div>
-
-<div class="modal fade" id="modaldelete" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Hapus User</h4>
-      </div>
-      <div class="modal-body">
-        <p>Apakah anda yakin untuk menghapus user ini?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="reset" class="btn btn-default pull-left btn-flat" data-dismiss="modal">Tidak</button>
-        <a class="btn btn-danger btn-flat" id="sethapus">Ya, saya yakin</a>
       </div>
     </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    @if(Session::has('message'))
-      <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4><i class="icon fa fa-check"></i> Berhasil!</h4>
-        <p>{{ Session::get('message') }}</p>
-      </div>
-    @endif
-
-    @if(Session::has('messagefail'))
-      <div class="alert alert-warning">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4><i class="icon fa fa-ban"></i> Oops, terjadi kesalahan!</h4>
-        <p>{{ Session::get('messagefail') }}</p>
-      </div>
-    @endif
+  <div class="modal fade" id="modaledit" role="dialog">
+    <div class="modal-dialog">
+        <form class="form-horizontal" action="{{route('user.update')}}" method="post" enctype="multipart/form-data">
+          {{csrf_field()}}
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Edit User</h4>
+            </div>
+            <div class="modal-body">
+              <div class="col-md-14 {{ $errors->has('email') ? 'has-error' : '' }}">
+                <label class="control-label">Email</label>
+                <input type="hidden" name="id" id="id">
+                <input id="edit_email" type="email" name="email" class="form-control" placeholder="Email" readonly="true" 
+                value="{{ old('edit_email') }}">
+                @if($errors->has('edit_email'))
+                  <span class="help-block">
+                    <i>* {{$errors->first('edit_email')}}</i>
+                  </span>
+                @endif
+              </div>
+              <div class="col-md-14 {{ $errors->has('nama') ? 'has-error' : '' }}">
+                <label class="control-label">Nama</label>
+                <input id="edit_nama" type="input" name="nama" class="form-control" placeholder="Name" value="{{ old('edit_nama') }}">
+                @if($errors->has('edit_nama'))
+                  <span class="help-block" style="color:red">
+                    <i>* {{$errors->first('edit_nama')}}</i>
+                  </span>
+                @endif
+              </div>
+              <div class="col-md-14 {{ $errors->has('level') ? 'has-error' : '' }}">
+                <label class="control-label">Level</label>
+                <select class="form-control" name="level" id="level_user">
+                  <option value="-- Pilih --">-- Pilih --</option>
+                  <option value="1" {{ old('level')=="1" ? 'selected' : '' }} id="flag_super_admin">Superadmin</option>
+                  <option value="2" {{ old('level')=="2" ? 'selected' : '' }} id="flag_admin">Admin</option>
+                  <option value="3" {{ old('level')=="3" ? 'selected' : '' }} id="flag_user">User</option>
+                </select>
+                @if($errors->has('level_user'))
+                  <span class="help-block" style="color:red">
+                    <i>* {{$errors->first('level_user')}}</i>
+                  </span>
+                @endif
+              </div>
+              <div class="col-md-14 {{ $errors->has('activated') ? 'has-error' : '' }}">
+                <label class="control-label">Status Aktif</label>
+                <select class="form-control" name="activated" id="activated_id">
+                  <option value="-- Pilih --">-- Pilih --</option>
+                  <option value="0" {{ old('activated')=="0" ? 'selected' : '' }} id="flag_tidak_aktif">Tidak Aktif</option>
+                  <option value="1" {{ old('activated')=="1" ? 'selected' : '' }} id="flag_aktif">Aktif</option>
+                </select>
+                @if($errors->has('activated_id'))
+                  <span class="help-block" style="color:red">
+                    <i>* {{$errors->first('activated_id')}}</i>
+                  </span>
+                @endif
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="reset" class="btn btn-danger pull-left btn-flat" data-dismiss="modal">Tidak</button>
+              <button type="submit" class="btn btn-primary btn-flat">Simpan Perubahan</a>
+            </div>
+          </div>
+      </form>
+    </div>
   </div>
 
   <div class="">
@@ -150,6 +123,23 @@
     </div>
     <div class="clearfix"></div>
     <hr>
+    <div class="col-md-12">
+      @if(Session::has('message'))
+        <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <h4><i class="icon fa fa-check" style="color:white"></i> Berhasil!</h4>
+          <p style="color:white">{{ Session::get('message') }}</p>
+        </div>
+      @endif
+
+      @if(Session::has('messagefail'))
+        <div class="alert alert-warning">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <h4><i class="icon fa fa-ban" style="color:white"></i> Oops, terjadi kesalahan!</h4>
+          <p style="color:white">{{ Session::get('messagefail') }}</p>
+        </div>
+      @endif
+    </div>
     <div class="row">
       <div class="col-md-5 col-xs-12">
         <div class="x_panel">
@@ -164,13 +154,9 @@
               <div class="form-group">
                 <label class="control-label col-md-2 col-sm-3 col-xs-12 {{ $errors->has('email') ? 'has-error' : '' }}">Email</label>
                 <div class="col-md-10 col-sm-9 col-xs-12">
-                  <input type="email" name="email" class="form-control" placeholder="Ketikkan Email Anda..."
+                  <input type="email" name="email" class="form-control" placeholder="Ketikkan Email Anda..." value="{{ old('email') }}">
                   @if($errors->has('email'))
-                    value="{{ old('email') }}"
-                  @endif
-                  >
-                  @if($errors->has('email'))
-                    <span class="help-block">
+                    <span class="help-block" style="color:red">
                       <i>* {{$errors->first('email')}}</i>
                     </span>
                   @endif
@@ -180,12 +166,9 @@
                 <label class="control-label col-md-2 col-sm-3 col-xs-12 {{ $errors->has('nama') ? 'has-error' : '' }}">Nama </label>
                 <div class="col-md-10 col-sm-9 col-xs-12">
                   <input type="input" name="nama" class="form-control" placeholder="Ketikkan nama Anda..."
+                  value="{{ old('nama') }}">
                   @if($errors->has('nama'))
-                    value="{{ old('nama') }}"
-                  @endif
-                  >
-                  @if($errors->has('nama'))
-                    <span class="help-block">
+                    <span class="help-block" style="color:red">
                       <i>* {{$errors->first('nama')}}</i>
                     </span>
                   @endif
@@ -195,21 +178,31 @@
                 <label class="control-label col-md-2 col-sm-3 col-xs-12">Level</label>
                 <div class="col-md-10 col-sm-9 col-xs-12">
                   <select class="form-control" name="level">
-                    <option value="-- Pilih --">-- Pilih --</option>
+                    <option value="">-- Pilih --</option>
                     <option value="1" {{ old('level')=="1" ? 'selected' : '' }} >Superadmin</option>
                     <option value="2" {{ old('level')=="2" ? 'selected' : '' }} >Admin</option>
                     <option value="3" {{ old('level')=="3" ? 'selected' : '' }} >User</option>
                   </select>
+                  @if($errors->has('level'))
+                    <span class="help-block" style="color:red">
+                      <i>* {{$errors->first('level')}}</i>
+                    </span>
+                  @endif
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-md-2 col-sm-3 col-xs-12">Status</label>
                 <div class="col-md-10 col-sm-9 col-xs-12">
                   <select class="form-control" name="activated">
-                    <option value="-- Pilih --">-- Pilih --</option>
+                    <option value="">-- Pilih --</option>
                     <option value="0" {{ old('level')=="0" ? 'selected' : '' }} >Tidak Aktif</option>
                     <option value="1" {{ old('level')=="1" ? 'selected' : '' }} >Aktif</option>
                   </select>
+                  @if($errors->has('activated'))
+                    <span class="help-block" style="color:red">
+                      <i>* {{$errors->first('activated')}}</i>
+                    </span>
+                  @endif
                 </div>
               </div>
               <div class="ln_solid"></div>
@@ -331,10 +324,12 @@
   <!-- starrr -->
   <script src="{{ asset('vendors/starrr/dist/starrr.js') }}"></script>
 
-  <!-- DataTables -->
-  <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
-  <script src="{{asset('plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
-  <!-- bootstrap-daterangepicker -->
+  <script type="text/javascript">
+    @if ($errors->has('edit_nama') || $errors->has('level_user') || $errors->has('activated_id'))
+      $('#modaledit').modal('show');
+    @endif
+  </script>
+
    <script>
     $(function () {
       $("#tabelinfo").on("click", "a.edit", function(){

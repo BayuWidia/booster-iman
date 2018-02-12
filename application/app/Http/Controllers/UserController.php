@@ -10,6 +10,7 @@ use DB;
 use Mail;
 use Hash;
 use Image;
+use Validator;
 
 use App\Models\MasterUser;
 
@@ -35,7 +36,24 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-      // dd($request);
+      $message = [
+        'email.required' => 'Email Tidak Boleh Kosong',
+        'nama.required' => 'Nama Tidak Boleh Kosong',
+        'level.required' => 'Level Tidak Boleh Kosong',
+        'activated.required' => 'Status Tidak Boleh Kosong'
+      ];
+      
+      $validator = Validator::make($request->all(), [
+        'email' => 'required',
+        'nama' => 'required',
+        'level' => 'required',
+        'activated' => 'required',
+      ], $message);
+
+      if($validator->fails()) {
+        return redirect()->route('user.index')->withErrors($validator)->withInput();
+      }
+
       $set = new MasterUser;
       $set->email = $request->email;
       $set->nama = $request->nama;
@@ -51,7 +69,22 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-      // dd($request);
+      // $message = [
+      //   'edit_nama.required' => 'Nama Tidak Boleh Kosong',
+      //   'level_user.required' => 'Level Tidak Boleh Kosong',
+      //   'activated_id.required' => 'Status Tidak Boleh Kosong'
+      // ];
+      
+      // $validator = Validator::make($request->all(), [
+      //   'edit_nama' => 'required',
+      //   'level_user' => 'required',
+      //   'activated_id' => 'required',
+      // ], $message);
+
+      // if($validator->fails()) {
+      //   return redirect()->route('user.index')->withErrors($validator)->withInput();
+      // }
+
       $set = MasterUser::find($request->id);
       $set->nama = $request->nama;
       $set->level = $request->level;
