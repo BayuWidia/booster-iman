@@ -148,7 +148,7 @@
           <div class="x_content">
             <ul class="messages">
               <li>
-                <img src="images/img.jpg" class="avatar" alt="Avatar">
+                <img src="{{ url('images') }}/img.jpg" class="avatar" alt="Avatar">
                 <div class="message_date">
                   <h5 class="date text-info">24 Februari 2018</h5>
                 </div>
@@ -164,7 +164,7 @@
                 </div>
               </li>
               <li>
-                <img src="images/img.jpg" class="avatar" alt="Avatar">
+                <img src="{{ url('images') }}/img.jpg" class="avatar" alt="Avatar">
                 <div class="message_date">
                   <h5 class="date text-info">01 Maret 2018</h5>
                 </div>
@@ -180,7 +180,7 @@
                 </div>
               </li>
               <li>
-                <img src="images/img.jpg" class="avatar" alt="Avatar">
+                <img src="{{ url('images') }}/img.jpg" class="avatar" alt="Avatar">
                 <div class="message_date">
                   <h5 class="date text-info">15 Maret 2018</h5>
                 </div>
@@ -328,7 +328,7 @@
               <li>
                 <a>
                   <span class="image">
-                    <img src="images/img.jpg" alt="img" />
+                    <img src="{{ url('images') }}/img.jpg" alt="img" />
                   </span>
                   <span>
                     <span>Bayu Widia Santoso</span>
@@ -339,7 +339,7 @@
               <li>
                 <a>
                   <span class="image">
-                    <img src="images/img.jpg" alt="img" />
+                    <img src="{{ url('images') }}/img.jpg" alt="img" />
                   </span>
                   <span>
                     <span>Alief Rizkian</span>
@@ -350,7 +350,7 @@
               <li>
                 <a>
                   <span class="image">
-                    <img src="images/img.jpg" alt="img" />
+                    <img src="{{ url('images') }}/img.jpg" alt="img" />
                   </span>
                   <span>
                     <span>Esa Amalia</span>
@@ -361,7 +361,7 @@
               <li>
                 <a>
                   <span class="image">
-                    <img src="images/img.jpg" alt="img" />
+                    <img src="{{ url('images') }}/img.jpg" alt="img" />
                   </span>
                   <span>
                     <span>Rahima Zakia</span>
@@ -372,7 +372,7 @@
               <li>
                 <a>
                   <span class="image">
-                    <img src="images/img.jpg" alt="img" />
+                    <img src="{{ url('images') }}/img.jpg" alt="img" />
                   </span>
                   <span>
                     <span>Iswahyudi</span>
@@ -383,7 +383,7 @@
               <li>
                 <a>
                   <span class="image">
-                    <img src="images/img.jpg" alt="img" />
+                    <img src="{{ url('images') }}/img.jpg" alt="img" />
                   </span>
                   <span>
                     <span>Aditya Nugraha</span>

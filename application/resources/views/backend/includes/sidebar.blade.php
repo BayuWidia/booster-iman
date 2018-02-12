@@ -8,7 +8,7 @@
 
     <div class="profile">
       <div class="profile_pic">
-        <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+        <img src="{{ url('images') }}/img.jpg" alt="..." class="img-circle profile_img">
       </div>
       <div class="profile_info">
         <span>Selamat Datang,</span>
@@ -49,7 +49,7 @@
           </li>
           <li><a><i class="fa fa-users"></i> Management User <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="{{ route('form') }}">Kelola Data User</a></li>
+              <li><a href="{{ route('user.index') }}">Kelola Data User</a></li>
             </ul>
           </li>
         </ul>

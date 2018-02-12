@@ -23,5 +23,12 @@ Route::get('/panel', function () {
   return view('backend/pages/login');
 })->name('login.pages');
 
-Route::get('dashboard', 'DashboardController@index')->name('dashboard');
-Route::get('form', 'FormController@showForm')->name('form');
+Route::get('panel/dashboard', 'DashboardController@index')->name('dashboard');
+
+
+
+Route::get('panel/index-user', 'UserController@index')->name('user.index');
+Route::post('panel/store-user', 'UserController@store')->name('user.store');
+Route::post('panel/update-user', 'UserController@update')->name('user.update');
+Route::get('panel/delete-user/{id}', 'UserController@delete')->name('user.delete');
+Route::get('panel/bind-user/{id}', 'UserController@bind')->name('user.bind');
