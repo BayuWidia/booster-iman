@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('backend.layout.master')
 
 @section('title')
   <title>Booster Iman</title>
@@ -13,7 +13,8 @@
   <!-- Switchery -->
   <link href="{{ asset('vendors/switchery/dist/switchery.min.css') }}" rel="stylesheet">
   <!-- starrr -->
-  <link href="{{ asset('vendors/starrr/dist/starrr.css') }}" rel="stylesheet">@endsection
+  <link href="{{ asset('vendors/starrr/dist/starrr.css') }}" rel="stylesheet">
+@endsection
 
 @section('content')
   <!-- page content -->

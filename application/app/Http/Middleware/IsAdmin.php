@@ -17,9 +17,14 @@ class IsAdmin{
 	 public function handle($request, Closure $next)
 	 {
 		 if (Auth::user()) {
-				 return $next($request);
+				return $next($request);
 		 }
 
-		 return redirect('/');
+	      // if(session('level') == 0 || session('level') == 1 || session('level') == 2)
+	      // {
+	      //   return $next($request);
+	      // }
+
+		 return redirect('/panel');
 	 }
 }

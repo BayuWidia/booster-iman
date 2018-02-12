@@ -23,6 +23,6 @@ class FormController extends Controller
     public function showForm()
     {
       // dd("asdasdas");
-      return view('pages.form.index');
+      return view('backend.pages.form.index');
     }
 }

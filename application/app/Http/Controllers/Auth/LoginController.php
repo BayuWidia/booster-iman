@@ -48,19 +48,21 @@ class LoginController extends Controller
 
     public function login(Request $request, Guard $auth)
     {
+      
       $message = [
         'email.required' => 'Email Tidak Boleh Kosong',
         'password.required' => 'Password Tidak Boleh Kosong'
       ];
-      // dd($request);
+      
       $validator = Validator::make($request->all(), [
         'email' => 'required',
         'password' => 'required',
       ], $message);
 
       if($validator->fails()) {
-        return redirect()->route('index')->withErrors($validator)->withInput();
+        return redirect()->route('login.pages')->withErrors($validator)->withInput();
       }
+      // dd($request);
 
       if(Auth::attempt(['email' => $request->email, 'password' => $request->password,'activated'=>1]))
       {
@@ -71,12 +73,21 @@ class LoginController extends Controller
         $set->save();
 
         session()->put('level', Auth::user()->level);
-
+        // dd($request);
         return redirect()->route('dashboard');
       }
       else
       {
-        return redirect()->route('index')->with('failedLogin', 'Periksa Kembali Email atau Password Anda.')->withInput();
+        return redirect()->route('login.pages')->with('failedLogin', 'Periksa Kembali Email atau Password Anda.')->withInput();
       }
     }
+
+
+  public function logout(Request $request)
+  {
+    // dd('asdasd');
+    session()->flush();
+    Auth::logout();
+    return redirect()->route('login.pages');
+  }
 }

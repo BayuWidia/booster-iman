@@ -14,6 +14,14 @@
 // Route::get('/', function () {return view('pages/login');})->name('login');
 
 Auth::routes();
-Route::get('/', function () {return view('pages/login');})->name('index');
-Route::get('dashboard', 'DashboardController@taskListDashboard')->name('dashboard');
+// Route::get('/', function () {return view('pages/login');})->name('index');
+// Route::get('dashboard', 'DashboardController@taskListDashboard')->name('dashboard');
+// Route::get('form', 'FormController@showForm')->name('form');
+
+
+Route::get('/panel', function () {
+  return view('backend/pages/login');
+})->name('login.pages');
+
+Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('form', 'FormController@showForm')->name('form');

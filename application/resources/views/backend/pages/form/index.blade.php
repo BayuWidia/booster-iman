@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('backend.layout.master')
 
 @section('title')
   <title>Booster Iman</title>

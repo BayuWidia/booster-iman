@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  @include('includes.head')
+  @include('backend.includes.head')
 
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        @include('includes.sidebar')
+        @include('backend.includes.sidebar')
 
-        @include('includes.headbar')
+        @include('backend.includes.headbar')
 
         <div class="right_col" role="main">
           @yield('content')
         </div>
 
         <footer>
-          @include('includes.footer')
+          @include('backend.includes.footer')
         </footer>
       </div>
     </div>
 
-    @include('includes.bottomscript')
+    @include('backend.includes.bottomscript')
   </body>
 </html>
